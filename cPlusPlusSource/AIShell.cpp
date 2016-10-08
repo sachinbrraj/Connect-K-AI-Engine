@@ -1,7 +1,8 @@
 #include "AIShell.h"
 #include <iostream>
+#include <cstdlib>
 
-
+using namespace std;
 AIShell::AIShell(int numCols, int numRows, bool gravityOn, int** gameState, Move lastMove)
 {
 	this->deadline=0;
@@ -28,16 +29,35 @@ Move AIShell::makeMove(){
 	//this part should be filled in by the student to implement the AI
 	//Example of a move could be: Move move(1, 2); //this will make a move at col 1, row 2
 	
-	
+	//cout<<"Deepthi";
 	//this will move to the left-most column possible.
-	for (int col = 0; col<numCols; col++){
-		for (int row = 0; row<numRows; row++){
+	srand(time(NULL));
+
+	int c = rand()%numCols;
+	int r = rand()%numRows;
+
+	while(true)
+	{
+		if(gameState[c][r] == NO_PIECE)
+		{
+			Move m(c,r);
+			return m;
+		}
+		else
+		{
+			c = rand()%numCols;
+			r = rand()%numRows;
+
+		}
+	}
+/*	for (int col = 0; col< numCols; col++){
+		for (int row = 0; row< numRows; row++){
 			if (gameState[col][row] == NO_PIECE){
 				Move m(col, row);
 				return m;
 			}
 		}
-	}
+	}*/
 	Move m(0, 0);
 	return m;
 	 
